@@ -1,0 +1,38 @@
+{
+  "name": "bot_deli_pasteles",
+  "version": "1.0.0",
+  "description": "Un bot de Messenger para mi pasteleria",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonatan-parra/bot_Deli_Pasteles.git"
+  },
+  "keywords": [
+    "bot",
+    "messenger",
+    "pasteles",
+    "facebook",
+    "chat"
+  ],
+  "author": "Jonata Parra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonatan-parra/bot_Deli_Pasteles/issues"
+  },
+  "homepage": "https://github.com/jonatan-parra/bot_Deli_Pasteles#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "engines": {
+	"node": "8.9.1" // o la versión que tu quieras
+  }
+}
