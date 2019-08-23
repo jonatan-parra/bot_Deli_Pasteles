@@ -1,0 +1,7 @@
+
+curl -X POST -H "Content-Type: application/json" -d '{
+  "get_started":
+    {"payload":
+      "GET_STARTED_DELIPASTELES"
+    }
+}' "https://graph.facebook.com/v2.11/me/messenger_profile?access_token=EAAJgFXUAQ7UBADL254uvimAnSNTV36htKdIx1P9ZAglTHF5ZBQu4cAVgzFuZCXWtCXhk8wCiHZC9JGIC7ohs9M1iHkjoBf6U5V32XLz90fmKtMjaVPxyXsjwa0Isr3ib7SVHS1iweFeNNd15SIQn6oZB1hqO3rpJlH3ilnfWiyfot5L96djp2"

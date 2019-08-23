@@ -1,0 +1,12 @@
+curl -X POST -H "Content-Type: application/json" -d '{
+  "greeting": [
+    {
+      "locale": "default",
+      "text": "Hola {{user_first_name}}, soy DeliPasteles, tenemos los mejores pasteles para ti"
+    },
+    {
+      "locale": "en_US",
+      "text": "Hi {{user_first_name}}, Im DeliPasteles"
+    }
+  ]
+}' "https://graph.facebook.com/v2.11/me/messenger_profile?access_token=EAAJgFXUAQ7UBADL254uvimAnSNTV36htKdIx1P9ZAglTHF5ZBQu4cAVgzFuZCXWtCXhk8wCiHZC9JGIC7ohs9M1iHkjoBf6U5V32XLz90fmKtMjaVPxyXsjwa0Isr3ib7SVHS1iweFeNNd15SIQn6oZB1hqO3rpJlH3ilnfWiyfot5L96djp2"

@@ -1,0 +1,58 @@
+curl -X POST -H "Content-Type: application/json" -d '{
+  "persistent_menu": [
+    {
+      "locale": "default",
+      "composer_input_disabled": false,
+      "call_to_actions": [
+        {
+          "title": "Menú de productos",
+          "type": "nested",
+          "call_to_actions":[
+            {
+              "title": "Pasteles 2D",
+              "type": "postback",
+              "payload": "PASTELES_2D_PAYLOAD"
+            },
+            {
+              "title": "Pasteles 3D",
+              "type": "postback",
+              "payload": "PASTELES_3D_PAYLOAD"
+            },
+            {
+              "title": "Cupcakes",
+              "type": "postback",
+              "payload": "CUPCAKES_PAYLOAD"
+            },
+            {
+              "title": "Galletas",
+              "type": "postback",
+              "payload": "GALLETAS_PAYLOAD"
+            },
+          ]
+        },
+        {
+          "title": "Información de compra",
+          "type": "nested",
+          "call_to_actions":[
+            {
+              "title": "Como realizar el pedido",
+              "type": "postback",
+              "payload": "COMO_REALIZAR_PEDIDO_PAYLOAD"
+            },
+            {
+              "title": "Forma de pago",
+              "type": "postback",
+              "payload": "FORMA_DE_PAGO_PAYLOAD"
+            }
+          ]
+        },
+        {
+          "type": "web_url",
+          "title": "Visita nuestra página web",
+          "url": "https://deliciasangelus6.wixsite.com/deliciasangelus",
+          "webview_height_ratio": "full"
+        }
+      ]
+    }
+  ]
+}' "https://graph.facebook.com/v2.11/me/messenger_profile?access_token=EAAJgFXUAQ7UBADL254uvimAnSNTV36htKdIx1P9ZAglTHF5ZBQu4cAVgzFuZCXWtCXhk8wCiHZC9JGIC7ohs9M1iHkjoBf6U5V32XLz90fmKtMjaVPxyXsjwa0Isr3ib7SVHS1iweFeNNd15SIQn6oZB1hqO3rpJlH3ilnfWiyfot5L96djp2"
