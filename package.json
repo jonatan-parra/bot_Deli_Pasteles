@@ -33,6 +33,6 @@
     "nodemon": "^1.19.1"
   },
   "engines": {
-	"node": "8.9.1" // o la versión que tu quieras
+	"node": "8.9.1"
   }
 }
