@@ -9,25 +9,15 @@ curl -X POST -H "Content-Type: application/json" -d '{
           "type": "nested",
           "call_to_actions":[
             {
-              "title": "Pasteles 2D",
+              "title": "Pasteles",
               "type": "postback",
-              "payload": "PASTELES_2D_PAYLOAD"
-            },
-            {
-              "title": "Pasteles 3D",
-              "type": "postback",
-              "payload": "PASTELES_3D_PAYLOAD"
+              "payload": "PASTELES_PAYLOAD"
             },
             {
               "title": "Cupcakes",
               "type": "postback",
               "payload": "CUPCAKES_PAYLOAD"
-            },
-            {
-              "title": "Galletas",
-              "type": "postback",
-              "payload": "GALLETAS_PAYLOAD"
-            },
+            }
           ]
         },
         {
@@ -43,14 +33,35 @@ curl -X POST -H "Content-Type: application/json" -d '{
               "title": "Forma de pago",
               "type": "postback",
               "payload": "FORMA_DE_PAGO_PAYLOAD"
+            },
+            {
+              "title": "Promoción mensual",
+              "type": "postback",
+              "payload": "PROMOCION_PAYLOAD"
             }
           ]
         },
         {
-          "type": "web_url",
-          "title": "Visita nuestra página web",
-          "url": "https://deliciasangelus6.wixsite.com/deliciasangelus",
-          "webview_height_ratio": "full"
+          "title": "Información de contacto",
+          "type": "nested",
+          "call_to_actions":[
+            {
+              "title": "Llamanos",
+              "type": "postback",
+              "payload": "LLAMANOS_PAYLOAD"
+            },
+            {
+              "title": "Ubica nuestro local",
+              "type": "postback",
+              "payload": "UBICACION_PAYLOAD"
+            },
+            {
+              "type": "web_url",
+              "title": "Visita nuestra página web",
+              "url": "https://jonatan-parra.github.io/",
+              "webview_height_ratio": "full"
+            }
+          ]
         }
       ]
     }

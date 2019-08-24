@@ -103,7 +103,7 @@ function handleMessage(senderId, event){
   if(event.text){
     defaultMessage(senderId);
     //messageImage(senderId);
-    //contactSuppport(senderId);
+    //contactSuppport(senderId);  **
     //receipt(senderId);
     //showLocations(senderId);
   } else if(event.attachments){
@@ -146,30 +146,36 @@ function handlePostBack(senderId, payload){
       //console.log(payload);
       enviar_mensaje_texto(senderId, "Bienvenido a Delicias Angelus. Navega a través de nuestro menú");
     break;
-    case "PASTELES_3D_PAYLOAD":
-      showPasteles3D(senderId);
-    break;
-    case "PASTELES_2D_PAYLOAD":
-      //showPasteles2D(senderId);
-      sizePastel(senderId);
+
+    // Menú de productos
+    case "PASTELES_PAYLOAD":
+      showPasteles(senderId);
     break;
     case "CUPCAKES_PAYLOAD":
       //showPasteles2D(senderId);
       CUPCAKES_PAYLOAD(senderId);
     break;
 
+    // Información de compra
     case "COMO_REALIZAR_PEDIDO_PAYLOAD":
-      enviar_mensaje_texto(senderId, "Dinos la fecha en que necesitas el pastel (Recuerda que debe ser 4 días antes)");
+      enviar_mensaje_texto(senderId, "Dinos la fecha en que necesitas el pastel (Recuerda que debe ser 8 días antes)");
     break;
     case "FORMA_DE_PAGO_PAYLOAD":
-      enviar_mensaje_texto(senderId, "Debes abonar el 50% del valor de la compra para pasar tu pastel a produccón");
+      enviar_mensaje_texto(senderId, "Debes abonar el 50% del valor de la compra para pasar tu pastel a producción");
     break;
-    case "PORCIONES_PAYLOAD":
-      enviar_mensaje_texto(senderId, "Nuestro pastel mas pequeño es de 6 porciones");
+    case "PROMOCION_PAYLOAD":
+      messageImage(senderId);
+      enviar_mensaje_texto(senderId, "Tenemos galletas con el 20% de descuento");
     break;
-    case "PASTEL_CAT_PAYLOAD":
-      sizePastel(senderId);
+
+    // Información de contacto
+    case "LLAMANOS_PAYLOAD":
+      contactSuppport(senderId);
     break;
+    case "UBICACION_PAYLOAD":
+      showLocations(senderId);
+    break;
+
   }
 }
 
@@ -210,7 +216,7 @@ function callSendApi(response){
   )
 }
 
-function showPasteles3D(senderId){
+function showPasteles(senderId){
   const messageData = {
     "recipient":{
       "id": senderId
@@ -222,9 +228,9 @@ function showPasteles3D(senderId){
           "template_type": "generic",
           "elements": [
             {
-              "title": "Pastel de Minions",
-              "image_url": "https://http2.mlstatic.com/pastel-de-fondant-3d-minions-D_NQ_NP_555521-MLM20786995813_062016-F.jpg",
-              "subtitle": "Contiene el amor de un gato",
+              "title": "Pastel de tenis",
+              "image_url": "https://i.pinimg.com/736x/e0/b4/5c/e0b45ccc9a7d02f4c31644cf1d05e5a3.jpg",
+              "subtitle": "8 porciones",
               "buttons": [
                 {
                   "type": "postback",
@@ -234,9 +240,21 @@ function showPasteles3D(senderId){
               ]
             },
             {
-              "title": "Pastel de avión",
-              "subtitle": "Contiene el amor de un avion",
-              "image_url": "http://www.maplepasteles.com.mx/wp-content/uploads/2016/11/Pastel-Piloto-de-Avi%C3%B3n.jpg",
+              "title": "Pastel de gato",
+              "subtitle": "6 porciones",
+              "image_url": "http://pasteleriadc.com/wp-content/uploads/torta-gatitos-huellas.jpg",
+              "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Elegir este pastel",
+                  "payload": "PASTEL_PLANE_PAYLOAD",
+                }
+              ]
+            },
+            {
+              "title": "Pastel de cancha",
+              "subtitle": "10 porciones",
+              "image_url": "https://images-na.ssl-images-amazon.com/images/I/61R7a4EQgIL._SX466_.jpg",
               "buttons": [
                 {
                   "type": "postback",
@@ -254,52 +272,6 @@ function showPasteles3D(senderId){
   callSendApi(messageData);
 }
 
-
-function sizePastel(senderId){
-  console.log("Entró en sizePastel");
-  const messageData = {
-    "recipient": {
-      "id": senderId
-    },
-    "message": {
-      "attachment": {
-        "type":"template",
-        "payload": {
-          "template_type": "generic",
-          "elements": [
-            {
-              "title": "Individual",
-              "image_url": "https://i0.pngocean.com/files/250/448/850/2018-toyota-yaris-ia-lexus-is-car-car.jpg",
-              "subtitle": "Porción individual",
-              "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Elegir individual",
-                  "payload": "PERSONAL_SIZE_PAYLOAD",
-                }
-              ]
-            },
-            {
-              "title": "Mediana",
-              "image_url": "http://pasteleriadc.com/wp-content/uploads/torta-gatitos-huellas.jpg",
-              "subtitle": "Porcion mediana",
-              "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Elegir mediana",
-                  "payload": "MEDIANA_SIZE_PAYLOAD"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    }
-  }
-  callSendApi(messageData);
-}
-
-
 function CUPCAKES_PAYLOAD(senderId){
   console.log("Entró en sizePastel");
   const messageData = {
@@ -313,25 +285,25 @@ function CUPCAKES_PAYLOAD(senderId){
           "template_type": "generic",
           "elements": [
             {
-              "title": "Individual",
+              "title": "Caja de cupcakes",
               "image_url": "https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/cupcakes_93722_16x9.jpg",
-              "subtitle": "Porción individual",
+              "subtitle": "Caja de 12 unidades",
               "buttons": [
                 {
                   "type": "postback",
-                  "title": "Elegir individual",
+                  "title": "Elegir este",
                   "payload": "PERSONAL_SIZE_PAYLOAD",
                 }
               ]
             },
             {
-              "title": "Mediana",
+              "title": "Cupcake individual",
               "image_url": "https://thebusybaker.ca/wp-content/uploads/2019/02/birthday-cake-cupcakes-with-chocolate-frosting-fb-ig-3.jpg",
-              "subtitle": "Porcion mediana",
+              "subtitle": "Cupcakes por unidad",
               "buttons": [
                 {
                   "type": "postback",
-                  "title": "Elegir mediana",
+                  "title": "Elegir este",
                   "payload": "MEDIANA_SIZE_PAYLOAD"
                 }
               ]
@@ -344,8 +316,6 @@ function CUPCAKES_PAYLOAD(senderId){
   callSendApi(messageData);
 }
 
-
-
 function contactSuppport(senderId) {
     const messageData = {
         "recipient": {
@@ -356,7 +326,7 @@ function contactSuppport(senderId) {
                 "type": "template",
                 "payload": {
                     "template_type": "button",
-                    "text": "Hola este es el canal de soporte, ¿quieres llamarnos?",
+                    "text": "Este es nuestro canal de soporte, ¿quieres llamarnos?",
                     "buttons": [
                         {
                             "type": "phone_number",
@@ -364,6 +334,23 @@ function contactSuppport(senderId) {
                             "payload": "+571231231231"
                         }
                     ]
+                }
+            }
+        }
+    }
+    callSendApi(messageData);
+}
+
+function messageImage(senderId) {
+    const messageData = {
+        "recipient": {
+            "id": senderId
+        },
+        "message": {
+            "attachment": {
+                "type": "image",
+                "payload": {
+                    "url": "https://cdn.pixabay.com/photo/2017/11/24/20/01/christmas-cookies-2975570_1280.jpg"
                 }
             }
         }
@@ -388,27 +375,27 @@ function showLocations(senderId) {
                     "template_type": "generic",
                     "elements": [
                         {
-                            "title": "Sucursal Mexico",
-                            "image_url": "https://s3.amazonaws.com/chewiekie/img/productos-pizza-peperoni-champinones.jpg",
+                            "title": "Sucursal Parque Simón Bolivar",
+                            "image_url": "http://www.redmas.com.co/wp-content/uploads/2017/08/20170821-Simon-Bol%C3%ADvar.jpg",
                             "subtitle": "Direccion bonita #555",
                             "buttons": [
                                 {
                                     "title": "Ver en el mapa",
                                     "type": "web_url",
-                                    "url": "https://goo.gl/maps/GCCpWmZep1t",
+                                    "url": "https://www.google.com/maps/@4.6575995,-74.0946401,17.5z",
                                     "webview_height_ratio": "compact"
                                 }
                             ]
                         },
                         {
-                            "title": "Sucursal Colombia",
-                            "image_url": "https://s3.amazonaws.com/chewiekie/img/productos-pizza-peperoni-champinones.jpg",
+                            "title": "Sucursal Jardín Botánico",
+                            "image_url": "https://bogota.gov.co/sites/default/files/u38/Jard%C3%ADn%20Botanico-2.jpg",
                             "subtitle": "Direccion muy lejana #333",
                             "buttons": [
                                 {
                                     "title": "Ver en el mapa",
                                     "type": "web_url",
-                                    "url": "https://goo.gl/maps/GCCpWmZep1t",
+                                    "url": "https://www.google.com/maps/@4.6686297,-74.0976013,18z",
                                     "webview_height_ratio": "tall"
                                 }
                             ]
